@@ -1,13 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
-
-interface Todo {
-  id: number;
-  title: string;
-}
+import TodoList from './presentation/components/TodoList';
+import type { Todo } from './domain/entities/todo';
+import TodoForm from './presentation/components/TodoForm';
 
 function App() {
 
@@ -17,7 +12,7 @@ function App() {
     { id: 3, title: 'Build a Todo App' }
   ]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const titleInput = e.currentTarget.querySelector('input[name="title"]');
     const newTodoTitle = (titleInput as HTMLInputElement).value;
@@ -31,22 +26,8 @@ function App() {
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="title" placeholder="Add a new todo" />
-          <button type="submit">Add Todo</button>
-        </form>
-      </div>
-      <div>
-        {todos.map(todo => {
-          return (
-            <div>
-
-              <span>{todo.id}</span>
-              <span>{todo.title}</span></div>
-            )
-          })}
-      </div>
+      <TodoForm onAddTodo={onAdd} />
+      <TodoList todos={todos} />
     </>
   )
 }
