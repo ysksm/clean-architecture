@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { TodoPage } from './presentation/pages/TodoPage';
+import './App.css'; // 必要であれば残す、今回はシンプルなスタイルなので残します
 
-function App() {
-  const [count, setCount] = useState(0)
+import type { AddTodoUseCase } from './application/use-cases/AddTodoUseCase.ts';
+import type { GetTodosUseCase } from './application/use-cases/GetTodosUseCase.ts';
+import type { UpdateTodoUseCase } from './application/use-cases/UpdateTodoUseCase.ts';
+import type { DeleteTodoUseCase } from './application/use-cases/DeleteTodoUseCase.ts';
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface AppProps {
+  addTodoUseCase: AddTodoUseCase;
+  getTodosUseCase: GetTodosUseCase;
+  updateTodoUseCase: UpdateTodoUseCase;
+  deleteTodoUseCase: DeleteTodoUseCase;
 }
 
-export default App
+function App({ addTodoUseCase, getTodosUseCase, updateTodoUseCase, deleteTodoUseCase }: AppProps) {
+  return (
+    <TodoPage
+      addTodoUseCase={addTodoUseCase}
+      getTodosUseCase={getTodosUseCase}
+      updateTodoUseCase={updateTodoUseCase}
+      deleteTodoUseCase={deleteTodoUseCase}
+    />
+  );
+}
+
+export default App;
