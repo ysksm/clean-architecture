@@ -1,0 +1,231 @@
+:root {
+  --primary-color: #3498db;
+  --primary-dark: #2980b9;
+  --secondary-color: #2ecc71;
+  --secondary-dark: #27ae60;
+  --danger-color: #e74c3c;
+  --danger-dark: #c0392b;
+  --grey-light: #ecf0f1;
+  --grey-dark: #bdc3c7;
+  --text-color: #2c3e50;
+  --white: #ffffff;
+}
+
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* アプリ全体のスタイル */
+.app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* ヘッダー */
+.app-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* メインコンテンツ */
+.app-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--white);
+}
+
+/* フッター */
+.app-footer {
+  background-color: var(--grey-light);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-color);
+}
+
+/* Todo リストコンテナ */
+.todo-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.todo-list-container h2 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* フォーム */
+.todo-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid var(--grey-dark);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* ボタン */
+.btn {
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  font-size: 0.9rem;
+}
+
+.add-btn {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.add-btn:hover {
+  background-color: var(--secondary-dark);
+}
+
+.edit-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: var(--danger-dark);
+}
+
+.save-btn {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: var(--secondary-dark);
+}
+
+.cancel-btn {
+  background-color: var(--grey-dark);
+  color: var(--text-color);
+}
+
+.cancel-btn:hover {
+  background-color: var(--grey-light);
+}
+
+/* Todo リスト */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--grey-light);
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.todo-item:hover {
+  background-color: var(--grey-dark);
+}
+
+.todo-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.todo-title {
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.todo-title.completed {
+  text-decoration: line-through;
+  color: #7f8c8d;
+}
+
+.todo-edit {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* 統計 */
+.todo-stats {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  text-align: right;
+}
+
+/* メッセージ */
+.empty-message {
+  text-align: center;
+  color: var(--text-color);
+  font-style: italic;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-weight: 500;
+}
+
+.error {
+  color: var(--danger-color);
+}
