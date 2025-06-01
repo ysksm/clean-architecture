@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import './App.css';
+import { TodoPage } from './frameworks/react/pages/TodoPage';
+import { TodoController } from './adapters/controllers/TodoController';
+import { TodoPresenter } from './adapters/presenters/TodoPresenter';
+import { TodoUseCase } from './core/usecases/TodoUseCase';
+import { LocalStorageAdapter } from './adapters/storage/LocalStorageAdapter';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // 依存関係の注入
+  const todoRepository = new LocalStorageAdapter();
+  const todoUseCase = new TodoUseCase(todoRepository);
+  const todoPresenter = new TodoPresenter();
+  const todoController = new TodoController(todoUseCase, todoPresenter);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <TodoPage controller={todoController} />
+    </div>
+  );
 }
 
-export default App
+export default App;
