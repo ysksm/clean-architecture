@@ -53,7 +53,7 @@ export const TodoPage: React.FC<TodoPageProps> = ({
       <h1 style={{ textAlign: 'center', color: '#333' }}>Todoリスト (DDDサンプル)</h1>
       <TodoForm onAddTodo={handleAddTodo} />
       <TodoList
-        todos={todos.map(todo => todo.toPrimitives())}
+        todos={todos.map(todo => Todo.toPrimitives(todo))}
         onToggleComplete={handleToggleComplete}
         onDelete={handleDeleteTodo}
       />

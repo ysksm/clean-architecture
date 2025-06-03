@@ -1,4 +1,3 @@
-import React from 'react';
 import { TodoPage } from './features/todo/presentation/pages/TodoPage';
 import './App.css'; // 必要であれば残す、今回はシンプルなスタイルなので残します
 

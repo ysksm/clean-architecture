@@ -1,3 +1,4 @@
+import { Todo } from '../../domain/entities/Todo.ts';
 import type { ITodoRepository } from '../../domain/repositories/ITodoRepository.ts';
 import { TodoId } from '../../domain/value-objects/TodoId.ts';
 import { TodoTitle } from '../../domain/value-objects/TodoTitle.ts';
@@ -11,21 +12,20 @@ export class UpdateTodoUseCase {
 
   async execute(id: string, title?: string, completed?: boolean): Promise<void> {
     const todoId = TodoId.create(id);
-    const todo = await this.todoRepository.findById(todoId);
+    let todo = await this.todoRepository.findById(todoId);
 
     if (!todo) {
       throw new Error('Todo not found.');
     }
 
     if (title !== undefined) {
-      todo.changeTitle(TodoTitle.create(title));
+      Todo.changeTitle(todo, TodoTitle.create(title));
     }
-
     if (completed !== undefined) {
       if (completed) {
-        todo.markAsCompleted();
+        todo = Todo.markAsCompleted(todo);
       } else {
-        todo.markAsPending();
+        todo = Todo.markAsPending(todo);
       }
     }
 

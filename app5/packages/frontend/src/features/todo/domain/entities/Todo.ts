@@ -8,50 +8,42 @@ export interface TodoPrimitive {
   status: 'pending' | 'completed';
 }
 
-export class Todo {
-  readonly id: TodoId;
-  private title: TodoTitle;
-  private status: TodoStatus;
+export type Todo = {
+   id: TodoId;
+   title: TodoTitle;
+   status: TodoStatus;
+}
 
-  private constructor(id: TodoId, title: TodoTitle, status: TodoStatus) {
-    this.id = id;
-    this.title = title;
-    this.status = status;
-  }
-
-  static create(id: TodoId, title: TodoTitle, status: TodoStatus): Todo {
-    return new Todo(id, title, status);
-  }
-
-  static new(title: TodoTitle): Todo {
-    return new Todo(TodoId.generate(), title, TodoStatus.create('pending'));
-  }
-
-  changeTitle(title: TodoTitle): void {
-    this.title = title;
-  }
-
-  markAsCompleted(): void {
-    this.status = TodoStatus.create('completed');
-  }
-
-  markAsPending(): void {
-    this.status = TodoStatus.create('pending');
-  }
-
-  getTitle(): TodoTitle {
-    return this.title;
-  }
-
-  getStatus(): TodoStatus {
-    return this.status;
-  }
-
-  toPrimitives(): TodoPrimitive {
+export const Todo = {
+  create: (id: TodoId, title: TodoTitle, status: TodoStatus) => ({
+    id,
+    title,
+    status,
+  }),
+  new: (title: TodoTitle) => ({
+    id: TodoId.generate(),
+    title,
+    status: TodoStatus.create('pending'),
+  }),
+  changeTitle: (todo: Todo, title: TodoTitle): Todo => ({
+    ...todo,
+    title,
+  }),
+  markAsCompleted: (todo: Todo): Todo => ({
+    ...todo,
+    status: TodoStatus.create('completed'),
+  }),
+  markAsPending: (todo: Todo): Todo => ({
+    ...todo,
+    status: TodoStatus.create('pending'),
+  }),
+  getTitle: (todo: Todo): TodoTitle => todo.title,
+  getStatus: (todo: Todo): TodoStatus => todo.status,
+  toPrimitives(todo: Todo): TodoPrimitive {
     return {
-      id: this.id.value,
-      title: this.title.value,
-      status: this.status.value,
+      id: todo.id.value,
+      title: todo.title.value,
+      status: todo.status.value,
     };
   }
 }
