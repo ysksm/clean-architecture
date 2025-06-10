@@ -1,0 +1,114 @@
+// Task Management System IDL
+// Binary communication protocol using memory-mapped structures
+
+struct TaskId {
+  uint32 value;
+}
+
+struct TaskTitle {
+  uint16 length;
+  char[256] value;
+}
+
+struct TaskDescription {
+  uint16 length;
+  char[1024] value;
+}
+
+enum TaskStatus {
+  PENDING = 0,
+  IN_PROGRESS = 1,
+  COMPLETED = 2,
+  CANCELLED = 3
+}
+
+enum TaskPriority {
+  LOW = 0,
+  MEDIUM = 1,
+  HIGH = 2,
+  URGENT = 3
+}
+
+struct TaskDueDate {
+  uint64 timestamp; // Unix timestamp
+}
+
+struct Task {
+  TaskId id;
+  TaskTitle title;
+  TaskDescription description;
+  TaskStatus status;
+  TaskPriority priority;
+  TaskDueDate dueDate;
+  uint64 createdAt;
+  uint64 updatedAt;
+}
+
+// Request/Response Messages
+struct CreateTaskRequest {
+  TaskTitle title;
+  TaskDescription description;
+  TaskPriority priority;
+  TaskDueDate dueDate;
+}
+
+struct CreateTaskResponse {
+  bool success;
+  TaskId taskId;
+  char[256] errorMessage;
+}
+
+struct GetTasksRequest {
+  uint32 offset;
+  uint32 limit;
+  TaskStatus statusFilter;
+}
+
+struct GetTasksResponse {
+  bool success;
+  uint32 totalCount;
+  uint32 taskCount;
+  Task[100] tasks; // Max 100 tasks per request
+  char[256] errorMessage;
+}
+
+struct UpdateTaskRequest {
+  TaskId id;
+  TaskTitle title;
+  TaskDescription description;
+  TaskStatus status;
+  TaskPriority priority;
+  TaskDueDate dueDate;
+}
+
+struct UpdateTaskResponse {
+  bool success;
+  char[256] errorMessage;
+}
+
+struct DeleteTaskRequest {
+  TaskId id;
+}
+
+struct DeleteTaskResponse {
+  bool success;
+  char[256] errorMessage;
+}
+
+struct GetTaskStatsRequest {
+  // Empty for now
+}
+
+struct TaskStats {
+  uint32 totalTasks;
+  uint32 pendingTasks;
+  uint32 inProgressTasks;
+  uint32 completedTasks;
+  uint32 cancelledTasks;
+}
+
+struct GetTaskStatsResponse {
+  bool success;
+  TaskStats stats;
+  char[256] errorMessage;
+}
