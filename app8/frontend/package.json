@@ -1,0 +1,47 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && npm run lint:strict && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "typecheck:watch": "tsc -b --noEmit --watch",
+    "lint": "eslint . --cache --cache-location ./node_modules/.cache/eslint",
+    "lint:fix": "eslint . --fix --cache --cache-location ./node_modules/.cache/eslint",
+    "lint:strict": "eslint . --max-warnings 0 --cache --cache-location ./node_modules/.cache/eslint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,html,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx,html,yml,yaml}\"",
+    "check:all": "npm run typecheck && npm run lint:strict && npm run format:check",
+    "fix:all": "npm run lint:fix && npm run format",
+    "ci": "npm run check:all"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@prettier/plugin-xml": "^3.4.1",
+    "@types/eslint__js": "^8.42.3",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-import-resolver-typescript": "^4.4.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.4.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.34.0",
+    "vite": "^6.3.5"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "recommendations": [
+    // Code formatting
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    
+    // Linting
+    "dbaeumer.vscode-eslint",
+    
+    // TypeScript
+    "ms-vscode.vscode-typescript-next",
+    
+    // React
+    "dsznajder.es7-react-js-snippets",
+    "burkeholland.simple-react-snippets",
+    
+    // CSS/Styling
+    "styled-components.vscode-styled-components",
+    "bradlc.vscode-tailwindcss",
+    
+    // Git
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    
+    // Productivity
+    "christian-kohler.path-intellisense",
+    "formulahendry.auto-rename-tag",
+    "naumovs.color-highlight",
+    "wayou.vscode-todo-highlight",
+    "streetsidesoftware.code-spell-checker",
+    "gruntfuggly.todo-tree",
+    
+    // Testing
+    "orta.vscode-jest",
+    "kavod-io.vscode-jest-test-adapter",
+    
+    // Debugging
+    "msjsdiag.vscode-react-native",
+    
+    // Documentation
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    
+    // Other
+    "usernamehw.errorlens",
+    "wix.vscode-import-cost",
+    "prisma.prisma"
+  ],
+  "unwantedRecommendations": [
+    "hookyqr.beautify",
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ]
+}
